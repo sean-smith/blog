@@ -9,10 +9,6 @@
 			font-family: "Bookerly";
 			src: url('Fonts/Bookerly/Bookerly-Regular.ttf');
 		}
-		@font-face{
-			font-family: "Literata";
-			src: url('Fonts/literata/literata-regular.otf');
-		}
 
 		#content {
 			font-size: 18px;
@@ -23,9 +19,7 @@
 			margin: 0;
 		}
 		#title {
-			width: 600px;
 			text-align: center;
-			margin: auto;
 			padding-top: 5px;
 		}
 		#drop_cap {
@@ -50,10 +44,7 @@
 		}
 		#comments_title {
 			color: #35B1EA;
-			width: 600px;
-			text-align: left;
 			font-size: 20px;
-			margin: auto;
 			border-style: solid;	
 			border-color: #35B1EA;
 			border-left: 0;
@@ -74,7 +65,9 @@
 			margin: 0;
 		}
 		#facebook_comments {
-			margin: auto;
+			display: none;
+			margin: 0 auto;
+			max-width: 600px;
 		}
 	</style>
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:900' rel='stylesheet' type='text/css'>
@@ -84,13 +77,6 @@
 <body>
 	<!-- Facebook Comments stuff -->
 	<div id="fb-root"></div>
-	<script>(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
 	<!-- Facebook Comments stuff -->
 
 	<div id="top"></div>
@@ -102,11 +88,12 @@
 		</ul>
 	</div>
 
+	
+	<div id="content">
+
 	<div id="title">
 		<h1> Creators vs. Destroyers</h1>
 	</div>
-
-	<div id="content">
 
 		<p><span id="drop_cap">I</span> fundamentally believe that there are two types of people in this world. Those that inhibit progress and those that create progress.  For dramatic effect I'm going to call the people who inhibit progress destroyers and the people who create progress creators.</p>
 
@@ -129,13 +116,15 @@
 		<p>Creators have endless optimism. They believe that any problem can be solved.</p>
 
 		<p>I encourage you to instead of spending your days shooting down ideas, spend your days inventing. Become a creator and the world will be better off.</p>
+		<div id="comments_title">
+			Comments <span id="arrow">&#9660;</span>
+		</div>
+		<div id="facebook_comments" class="fb-comments" data-href="http://blog.seanssmith.com" data-width="600" data-numposts="5"></div>
 </div>
 
-<div id="comments_title">
-Comments
-</div>
-<div class="fb-comments" data-href="http://blog.seanssmith.com" data-width="600" data-numposts="5"></div>
 
+<script type="text/javascript" src="jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="magic.js"></script>
 
 </body>
 
