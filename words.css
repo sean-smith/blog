@@ -1,0 +1,74 @@
+		body {
+			font-family: Literata;
+		}
+		@font-face{
+			font-family: "Bookerly";
+			src: url('Fonts/Bookerly/Bookerly-Regular.ttf');
+		}
+		@font-face{
+			font-family: "Literata";
+			src: url('Fonts/literata/literata-regular.otf');
+		}
+
+		#content {
+			font-size: 18px;
+			width: 600px;
+			margin: auto;
+		}
+		body {
+			margin: 0;
+		}
+		#title {
+			width: 600px;
+			text-align: center;
+			margin: auto;
+			padding-top: 5px;
+		}
+		#drop_cap {
+			font-size: 60px;
+			float: left;
+			line-height: 80%;
+			padding-right: 10px;
+		}
+		#nav {
+			width: 200px;
+			background-color: #35B1EA;
+			float: left;
+			font-family: 'Source Sans Pro', sans-serif;
+			font-size: 20px;
+			height: 100%;
+			position:fixed;z-index:9999;
+
+		}
+		#nav li {
+			color: white;
+			list-style: none;
+		}
+		#comments_title {
+			color: #35B1EA;
+			width: 600px;
+			text-align: left;
+			font-size: 20px;
+			margin: auto;
+			border-style: solid;	
+			border-color: #35B1EA;
+			border-left: 0;
+			border-right: 0;
+			padding: 3px;
+			margin-bottom: 10px;
+		}
+		#top {
+			background-color: #35B1EA;
+			padding: 0px;
+			margin: 0;
+			height: 5px;
+			width: 100%;
+			position:fixed;z-index:9999;
+		}
+		ul {
+			padding: 10px;
+			margin: 0;
+		}
+		#facebook_comments {
+			margin: auto;
+		}
