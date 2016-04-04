@@ -8,10 +8,12 @@ body {
 }
 
 #content {
+	padding-top: 20px;
 	font-size: 18px;
 	width: 600px;
 	margin: auto;
 }
+
 body {  
 	margin: 0;
 }
@@ -25,21 +27,24 @@ body {
 	float: left;
 	line-height: 80%;
 	padding-right: 10px;
-}       
-#nav {  
-	width: 200px;
-	background-color: #35B1EA;
-	float: left;
-	font-family: 'Roboto';
-	font-size: 20px;
-	height: 100%;
-	position:fixed;z-index:9999;
-	font-weight: 900;
-}       
+}
+
+a {
+	color: #35B1EA;
+}
+
+#date {
+	color: #666;
+	padding-left: 10px;
+	font-size: 15px;
+}
+
+
 #nav li {
-	color: white;
 	list-style: none;
-}       
+	line-height: 1.5;
+}
+
 #comments_title {
 	color: #35B1EA;
 	font-size: 20px;
@@ -58,6 +63,7 @@ body {
 	width: 100%;
 	position:fixed;z-index:9999;
 }
+
 ul {
 	padding: 10px;
 	margin: 0;
