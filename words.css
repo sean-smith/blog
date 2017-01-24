@@ -10,7 +10,7 @@ body {
 #content {
 	padding-top: 20px;
 	font-size: 18px;
-	width: 600px;
+	max-width: 600px;
 	margin: auto;
 }
 
@@ -68,8 +68,9 @@ ul {
 	padding: 10px;
 	margin: 0;
 }       
+
 #facebook_comments {
 	display: none;
 	margin: 0 auto;
 	max-width: 600px;
-}       
+}
