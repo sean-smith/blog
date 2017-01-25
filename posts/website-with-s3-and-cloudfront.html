@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Website with S3 and Cloudfront</title>
-	<link href="../words.css" rel='stylesheet' type='text/css'>
+	<link href="../css/words.css" rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:900' rel='stylesheet' type='text/css'>
 </head>
 
@@ -19,7 +19,6 @@
 	<div id="title">
 		<h1>Hosting a Secure Website on AWS</h1>
 	</div>
-		
 
 	<p><span id="drop_cap">I</span> recently wanted to cut down on the number of EC2 instances I was using and use TLS to make sure everything I write on this blog is served with HTTPS. Having TLS (that's https) was important not because I have confidential information but because I want to ensure authenticity. When you go to <a href="blog.seanssmith.com">blog.seanssmith.com</a> you are guaranteed that I wrote the posts here.</p>
 
@@ -55,6 +54,9 @@
         --exclude "Makefile" \
         --delete</code></pre>
 
+     <p>Then deploy it!</p>
+     <code class="full">make deploy</code>
+
 		<div id="comments_title">
 			Comments <span id="arrow">&#9660;</span>
 		</div>
@@ -62,8 +64,8 @@
 </div>
 
 
-<script type="text/javascript" src="../jquery-1.12.0.min.js"></script>
-<script type="text/javascript" src="../magic.js"></script>
+<script type="text/javascript" src="../js/lib/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="../js/magic.js"></script>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
