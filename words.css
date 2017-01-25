@@ -7,6 +7,17 @@ body {
 	src: url('Fonts/Literata/literata-regular.otf');
 }
 
+code {
+	background-color: #eff0f1;
+	padding: 3px;
+}
+
+.full {
+	display: block;
+	padding: 10px;
+}
+
+
 #content {
 	padding-top: 20px;
 	padding-left: 15px;

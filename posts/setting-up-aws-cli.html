@@ -1,0 +1,58 @@
+ <html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Website with S3 and Cloudfront</title>
+	<link href="../words.css" rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:900' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<!-- Facebook Comments stuff -->
+	<div id="fb-root"></div>
+	<!-- Facebook Comments stuff -->
+
+	<div id="top"></div>
+	
+	<div id="content">
+
+	<div id="title">
+		<h1>Setting up AWS CLI</h1>
+	</div>
+
+	<p>First download and install the cli with <a href="http://lmgtfy.com/?q=install+pip">pip</a>.</p>
+
+		<p><code class="full">pip install awscli</code></p>
+
+		<p>You'll need a secret key and private key. To get these you'll need to setup a IAM user. Go to <a href="https://console.aws.amazon.com/iam/home?#/users">https://console.aws.amazon.com/iam/home?#/users</a>.</p>
+
+		<p>Click "Add User". Give it a username "cli" and click "Programmatic Access". On the next screen click "Attach Policy" and search for <code>AdministratorAccess</code>. Attach that Policy and click "Create User".</p>
+
+		<p><code class="full">aws configure</code></p>
+
+		<p>Now you'll have a <code>Access key ID</code> and <code>Secret access key</code>. Enter those when prompted.</p>
+
+	<p>That's it!</p>
+
+		<div id="comments_title">
+			Comments <span id="arrow">&#9660;</span>
+		</div>
+		<div id="facebook_comments" class="fb-comments" data-href="http://blog.seanssmith.com/posts/setting-up-aws-cli.html" data-width="600" data-numposts="5"></div>
+</div>
+
+
+<script type="text/javascript" src="../jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="../magic.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-75941300-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+
+</html>
