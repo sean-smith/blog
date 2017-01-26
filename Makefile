@@ -9,6 +9,7 @@
 deploy:
 	aws s3 sync ../blog s3://blog.seanssmith.com\
 		--exclude ".git/*"\
+		--exclude ".gitignore"\
 		--exclude "Makefile"\
-		--exclude "*.DS_STORE"\
+		--exclude "*.DS_Store"\
 		--delete
