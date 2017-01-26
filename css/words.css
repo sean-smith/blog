@@ -10,6 +10,8 @@ body {
 code {
 	background-color: #eff0f1;
 	padding: 3px;
+	border-radius: 3px;
+	border: 1px solid #e1e1e8;
 }
 
 .full {
