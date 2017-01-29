@@ -47,7 +47,7 @@ ul {
 
 /* Content of the Page */
 
-#content {
+.content {
 	padding-top: 20px;
 	padding-left: 30px;
 	padding-right: 30px;
@@ -57,7 +57,7 @@ ul {
 	line-height: 1.58; /* Magic number from medium.com */
 }
 
-#drop_cap {
+.drop_cap {
 	font-size: 60px;
 	float: left;
 	line-height: 80%;
@@ -97,6 +97,10 @@ code {
 }
 
 /* Home page */
+
+.home {
+	max-width: 600px;
+}
 
 #date {
 	color: #666;

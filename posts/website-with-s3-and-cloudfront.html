@@ -3,7 +3,7 @@ layout: post
 title: Hosting a Secure Website on AWS
 ---
 
-<p><span id="drop_cap">I</span> recently wanted to cut down on the number of EC2 instances I was using and use TLS to make sure everything I write on this blog is served with HTTPS. Having TLS (that's https) was important not because I have confidential information but because I want to ensure authenticity. When you go to <a href="//blog.seanssmith.com">blog.seanssmith.com</a> you are guaranteed that I wrote the posts here.</p>
+<p><span class="drop_cap">I</span> recently wanted to cut down on the number of EC2 instances I was using and use TLS to make sure everything I write on this blog is served with HTTPS. Having TLS (that's https) was important not because I have confidential information but because I want to ensure authenticity. When you go to <a href="//blog.seanssmith.com">blog.seanssmith.com</a> you are guaranteed that I wrote the posts here.</p>
 
 <p>My initial plan was to host on S3, distribute files out of Cloudfront, and get a free certificate from letsencrypt. I decided to use Amazon Certificate Manager to get free certs instead of letsencrypt. Everything else is the same.</p>
 
