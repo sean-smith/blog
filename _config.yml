@@ -1,0 +1,8 @@
+# To run:
+#   jekyll serve
+
+
+# Base Url
+base_url: https://blog.seanssmith.com
+
+permalink: /:title/

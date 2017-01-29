@@ -1,52 +1,35 @@
- <html>
+---
+layout: post
+title: Hosting a Secure Website on AWS
+---
 
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Website with S3 and Cloudfront</title>
-	<link href="../css/words.css" rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:900' rel='stylesheet' type='text/css'>
-</head>
+<p><span id="drop_cap">I</span> recently wanted to cut down on the number of EC2 instances I was using and use TLS to make sure everything I write on this blog is served with HTTPS. Having TLS (that's https) was important not because I have confidential information but because I want to ensure authenticity. When you go to <a href="//blog.seanssmith.com">blog.seanssmith.com</a> you are guaranteed that I wrote the posts here.</p>
 
-<body>
-	<!-- Facebook Comments stuff -->
-	<div id="fb-root"></div>
-	<!-- Facebook Comments stuff -->
+<p>My initial plan was to host on S3, distribute files out of Cloudfront, and get a free certificate from letsencrypt. I decided to use Amazon Certificate Manager to get free certs instead of letsencrypt. Everything else is the same.</p>
 
-	<div id="top"></div>
+<p>Setting it all up:</p>
+
+<p>I created a bucket called <code>blog.seanssmith.com</code> on S3. Note that the bucket name should be the same name as the website, including subdomains. I'm using blog.seanssmith.com but you should change that to your domain
+
+<p>This can be easily done with the AWS cli. You'll need to have the AWS cli and be authenticated for this to work, if you're not see <a href="setting-up-aws-cli.html">this</a>.</p>
+
+	<p><code class="full">aws s3 mb blog.seanssmith.com</code></p>
+
+	<p><code class="full">aws s3 ls</code></p>
+
+<p>The ls works similar to <code>ls</code> on bash and you should see the bucket you just created listed.</p>
+
+<p>Next create a folder on your local machine (I called mine blog), and add an <code>index.html</code> file:</p>
+
+<p><code class="full">mkdir blog</code></p>
+
+<p><code class="full">cd blog</code></p>
+
+<p><code class="full">echo "Hello World!" > index.html</code></p>
+
+<p>I created a Makefile to deploy my website really easily. Create a makefile and add:
+
 	
-	<div id="content">
-
-	<div id="title">
-		<h1>Hosting a Secure Website on AWS</h1>
-	</div>
-
-	<p><span id="drop_cap">I</span> recently wanted to cut down on the number of EC2 instances I was using and use TLS to make sure everything I write on this blog is served with HTTPS. Having TLS (that's https) was important not because I have confidential information but because I want to ensure authenticity. When you go to <a href="//blog.seanssmith.com">blog.seanssmith.com</a> you are guaranteed that I wrote the posts here.</p>
-
-	<p>My initial plan was to host on S3, distribute files out of Cloudfront, and get a free certificate from letsencrypt. I decided to use Amazon Certificate Manager to get free certs instead of letsencrypt. Everything else is the same.</p>
-
-	<p>Setting it all up:</p>
-
-	<p>I created a bucket called <code>blog.seanssmith.com</code> on S3. Note that the bucket name should be the same name as the website, including subdomains. I'm using blog.seanssmith.com but you should change that to your domain
-
-	<p>This can be easily done with the AWS cli. You'll need to have the AWS cli and be authenticated for this to work, if you're not see <a href="setting-up-aws-cli.html">this</a>.</p>
-
-		<p><code class="full">aws s3 mb blog.seanssmith.com</code></p>
-
-		<p><code class="full">aws s3 ls</code></p>
-
-	<p>The ls works similar to <code>ls</code> on bash and you should see the bucket you just created listed.</p>
-
-	<p>Next create a folder on your local machine (I called mine blog), and add an <code>index.html</code> file:</p>
-
-	<p><code class="full">mkdir blog</code></p>
-
-	<p><code class="full">cd blog</code></p>
-
-	<p><code class="full">echo "Hello World!" > index.html</code></p>
-
-	<p>I created a Makefile to deploy my website really easily. Create a makefile and add:
-
-		
 <pre><code class="full">deploy:
     aws s3 sync ../blog s3://blog.seanssmith.com \
         --exclude ".git/*" \
@@ -54,28 +37,5 @@
         --exclude "Makefile" \
         --delete</code></pre>
 
-     <p>Then deploy it!</p>
-     <code class="full">make deploy</code>
-
-		<div id="comments_title">
-			Comments <span id="arrow">&#9660;</span>
-		</div>
-		<div id="facebook_comments" class="fb-comments" data-href="http://blog.seanssmith.com/posts/website-with-s3-and-cloudfront.html" data-width="600" data-numposts="5"></div>
-</div>
-
-
-<script type="text/javascript" src="../js/lib/jquery-1.12.0.min.js"></script>
-<script type="text/javascript" src="../js/magic.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-75941300-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-</body>
-
-</html>
+ <p>Then deploy it!</p>
+ <code class="full">make deploy</code>
