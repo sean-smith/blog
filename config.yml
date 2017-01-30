@@ -1,0 +1,14 @@
+# To run:
+#   jekyll serve
+
+
+# Base Url
+base_url: https://blog.seanssmith.com
+
+# Rename _dirs
+layouts_dir:  layouts
+includes_dir: includes
+
+# Exclude private files
+exclude:
+    - Makefile

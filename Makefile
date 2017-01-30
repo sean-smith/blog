@@ -9,8 +9,10 @@
 clean:
 	-rm -rf _site
 
-deploy:
-	jekyll build
+build:
+	jekyll build --config config.yml
+
+deploy: build
 	aws s3 sync _site s3://blog.seanssmith.com\
 		--exclude ".git/*"\
 		--exclude ".gitignore"\
@@ -18,4 +20,5 @@ deploy:
 		--exclude "*.DS_Store"\
 		--delete
 test:
-	jekyll serve
+	jekyll serve --config config.yml
+
