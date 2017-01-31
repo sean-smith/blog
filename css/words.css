@@ -6,6 +6,16 @@ body {
 	margin: 0;
 }
 
+.day {
+	background: #ffffff;
+	color: black;
+}
+
+.night {
+	background: #242424;
+	color: #35B1EA;
+}
+
 a {
 	color: #35B1EA;
 }
@@ -24,6 +34,15 @@ ul {
 	font-family: "Literata";
 	src: url('/fonts/Literata/literata-bold.otf');
 	font-weight: bold;
+}
+
+::selection {
+  background: #242424; /* WebKit/Blink Browsers */
+  color: #35B1EA;
+}
+::-moz-selection {
+  background: #242424; /* Gecko Browsers */
+  color: #35B1EA;
 }
 
 /* Top or Title */
@@ -46,6 +65,34 @@ ul {
 }
 
 /* Content of the Page */
+
+.arrow {
+	width: 60px;
+	height: 60px;
+	padding: 15px;
+}
+
+#left_arrow {
+	float: left;
+}
+
+#right_arrow {
+	float: right;
+}
+
+a.svg {
+ position: relative;
+ display: block; 
+}
+
+a.svg:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left:0;
+}
 
 .content {
 	padding-top: 20px;
@@ -97,6 +144,11 @@ code {
 }
 
 /* Home page */
+
+#s_icon {
+	height: 192px;
+	width: 192px;
+}
 
 .home {
 	max-width: 600px;

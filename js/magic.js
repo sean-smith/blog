@@ -9,6 +9,9 @@ var facebook = function(d, s, id) {
 		fjs.parentNode.insertBefore(js, fjs);
 };
 
+// Toggle night / day mode
+var day = true;
+
 var comments = false;
 
 // Toggle comments when arrow is pressed
@@ -26,5 +29,18 @@ $(function() {
 			comments = true;
 		}
 	});
-	
+
+	/* Day / Night Mode */
+	$("#title").click(function(){
+		if (day) {
+			$("body").removeClass("day").addClass("night");
+			$('#s_icon').attr('data', "/img/s_blue.svg");
+			day = false;
+		}
+		else {
+			$("body").removeClass("night").addClass("day");
+			$('#s_icon').attr('data', "/img/s_black.svg");
+			day = true;
+		}
+	});
 });
