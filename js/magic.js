@@ -34,12 +34,12 @@ $(function() {
 	$("#title").click(function(){
 		if (day) {
 			$("body").removeClass("day").addClass("night");
-			$('#s_icon').attr('data', "/img/s_blue.svg");
+			$('#s_icon').attr('data', "/img/super_blue.svg");
 			day = false;
 		}
 		else {
 			$("body").removeClass("night").addClass("day");
-			$('#s_icon').attr('data', "/img/s_black.svg");
+			$('#s_icon').attr('data', "/img/super_black.svg");
 			day = true;
 		}
 	});
