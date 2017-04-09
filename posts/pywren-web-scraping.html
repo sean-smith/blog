@@ -5,7 +5,7 @@ prev: /index.html
 next: /posts/omnibox-alias.html
 ---
 
-	<p><span class="drop_cap">I</span> was tasked with scraping information of houses for sale in Massachusetts for my data mining class. The target site in question was <a href='https://redfin.com'>redfin.com</a>, they explicitly do not tolerate web scraping and would give you a captcha if you exceeded some unknown threshhold of pages per minute or had a fishy <code>user-agent</code>.</p>
+	<p><span class="drop_cap">I</span> was tasked with scraping information of houses for sale in Massachusetts for my data mining class. The target site in question was <a href='https://redfin.com'>redfin.com</a>, they explicitly do not tolerate web scraping and will give you a captcha if you exceeded some unknown threshhold of pages per minute or had a fishy <code>user-agent</code>.</p>
 
 	<p>Not to be deterred by a catptcha, I used selenium Chromedriver to write a scraper that worked pretty well and importantly was not caught by redfin's algorithm. Each page took <code>~2-3</code> seconds to scrape.</p>
 
@@ -13,7 +13,7 @@ next: /posts/omnibox-alias.html
 
 	<p>A few months back I read about <a href="http://pywren.io/">pywren</a>, researchers at Berkeley wrote it to create AWS Lambda functions automatically and acheived an impressive 40 Tflops. I was less interested in the compute capacity and more interested in the read/write bandwith which they achieved an impressive 80 GB/s read and 60 GB/sec write.</p>
 
-	<p>I figured instead of scraping each page and then waiting and going onto the next, I could parallelize it. This was the perfect type of job for this pywren, it's embarrassingly paralell and network constrained.</p>
+	<p>I figured instead of scraping each page and then waiting and going onto the next, I could parallelize it. This was the perfect type of job for pywren, it's embarrassingly paralell and network constrained.</p>
 
 	<p>I setup pywren (I found a bug setting up and submitted a <a href="https://github.com/pywren/pywren/pull/117">pull request</a>) and ran the hello world example. I then tried running it on my code, like the following</p>
 
@@ -31,7 +31,7 @@ print("Took %f seconds..." %(end - start))</code></p>
 
 	<p>I had <code>10,840</code> urls total, each one required <code>3</code> seconds sleep between fetching each page. AWS Lambda restricts you to <code>300</code> seconds run time and <code>400</code> concurrent processes. Trying to maximize the concurrency while staying under the <code>400</code> process limit, I split the urls into groups of 40. Each group took minimum <code>40 * 3 + 40 * 1.5 = 180</code> seconds to run (that's 3 second pause plus roughly 1.5 second processing time). I ran <code>10,840 / 40 = 271</code> concurrent processes. This took about <code>272</code> seconds or roughly 3.95 minutes to complete.</p>
 
-	<p>The best part is, this level of usage falls into AWS Lambda's free tier. I used roughly <code>73,000</code> GB/sec of execution. This falls well below the <code>400,000</code> GB/sec threshold for free tier. I was able to speed up the execution of my job from 8 hours to 4 minutes, for free. It's almost like having a superpower.</p>
+	<p>The best part is, this level of usage falls into AWS Lambda's free tier. I used roughly <code>73,000</code> GB/sec of execution. This falls well below the <code>400,000</code> GB/sec threshold for free tier. I was able to speed up the execution of my job from 8 hours to 4 minutes, for free. It's like having a superpower.</p>
 
 
 
