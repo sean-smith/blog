@@ -1,0 +1,87 @@
+---
+layout: post
+title: Running Node.js in Production
+prev: /index.html
+next: /posts/simple-oauth.html
+---
+
+	<p>Want to run a Node.js application in production? The best way is to run it behind Nginx and use PM2 to keep it running after crashes and reboots.</p>
+
+	<p>First launch a EC2 instance on AWS, I used <code>Ubuntu 16.04</code> but 14.04 should be mostly equivalent. I'm going to also assume that you've setup a static ip and pointed your domain to the ip address of the server.</p>
+
+	On the instance install Nginx:</p>
+
+	<pre><code class="full">sudo apt-get update
+sudo apt-get install nginx</code></pre>
+
+	<p>Now visit yourdomain.com and make sure you see the nginx test page. If you don't it's likely an issue with your security group (fancy word for firewall). It should allow HTTP, HTTPS, and SSH traffic through. See the below image.</p>
+
+	<img src="/img/security-group.png" width="100%">
+
+	<p>Now install <code>certbot</code> to get a free TLS certificate from letsencrypt.</p>
+
+	<pre><code class="full">sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install certbot</code></pre>
+
+	<p>Now request a certificate (assuming your domain is yourdomain.com):</p>
+
+	<pre><code class="full">certbot certonly --webroot -w /var/www/html -d yourdomain.com</code></pre>
+
+	<p>Now that you have a certificate setup Nginx to listen to TLS traffic. Edit the <code>/etc/nginx/sites-available/default</code> file and add the following:</p>
+
+	<pre><code class="full"># Redirects user to HTTPS page
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    server_name _;
+    return 301 https://$host$request_uri;
+}
+
+# Listens for HTTPS Connections
+server {
+    listen 443 ssl;
+    server_name yourdomain.com;
+    ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem;
+
+    # Passes those connections to Node running on 127.0.0.1 on port 8080
+    location / {
+            proxy_pass http://localhost:8080;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+    }
+
+    # Sets the HSTS flag in browser
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains";
+}</code></pre>
+
+    Restart the Nginx service:
+
+    <code class="full">sudo service nginx restart</code>
+
+    <p>Now we need to setup Node so that Nginx can serve traffic to it.</p>
+
+    <p>First install PM2</p>
+
+    <code class="full">npm install pm2@latest -g</code>
+
+    <p>Now run your app with pm2. I assume <code>app.js</code> is what you'd run when serve traffic locally with node. I'm also assuming app.js is executable and can be run like <code>./app.js</code></p>
+
+    <code class="full">pm2 start app.js</code>
+
+    <p>You can check on the status of your app with pm2 like so (notice the job name doesn't include .js):</p>
+
+	<code class="full">pm2 start app.js</code>
+
+	<p>Assuming that your Node app is running on port <code>8080</code> you should now be able to go to <code>https://yourdomain.com</code>.
+
+
+	<p>To make sure browsers always go to the https version first (they'll get redirected automatically), add your application to <a href="https://hstspreload.org/">the HSTS preload list/</a>.
+
+
+
+
