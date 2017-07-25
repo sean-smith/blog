@@ -1,0 +1,43 @@
+---
+layout: post
+title: Alexa Skill Quick Upload to S3
+prev: /index.html
+next: /posts/graduation-speech.html
+---
+
+	<p>If you've developed a skill for alexa you know it can be painful to manually compress and then upload your skill to AWS Lambda each time you make changes. I created a makefile to automatically compress and upload the skill for you.</p>
+
+<pre><code class="full"># Alexa Skill upload to S3
+# Sean Smith 2017
+
+S3_BUCKET = alexa.seanssmith.com 
+ZIP_FILE = skill.zip
+
+upload:
+	aws s3 cp $(ZIP_FILE) s3://$(S3_BUCKET)
+zip:
+	zip -r $(ZIP_FILE) * \
+		--exclude Makefile \
+		--exclude $(ZIP_FILE)
+clean: 
+	-rm $(ZIP_FILE)
+
+deploy: clean zip upload</code></pre>
+
+	<p>Create a file called <code>Makefile</code> in the same directory as your skill's code, then paste in the above code. Change the two variables <code>S3_BUCKET</code> and <code>ZIP_FILE</code> (you can leave this as skill.zip if you'd like) and run:</p>
+
+	<pre><code class="full">make deploy</code></pre>
+
+	<p>If you get an error <code>bash: aws: command not found</code> <a href="https://blog.seanssmith.com/posts/setting-up-aws-cli.html">install and setup the aws cli.</a></p>
+
+	<p>If you get a permissions error you may need to setup your aws keys for the cli. Again see <a href="https://blog.seanssmith.com/posts/setting-up-aws-cli.html">Setup AWS Cli</a>.</p>
+
+	<p>Once you've deployed your skill to S3 you'll need to tell lambda to get that skill from S3. First go to S3, navigate the the bucket and filename that you gave your skill (in my example bucket name is alexa.seanssmith.com and skill name is skill.zip).</p>
+
+	<p>Copy the link as shown below:</p>
+
+	<img src="/img/s3_alexa.png" width="100%">
+
+	<p>Then head over to your Lambda skill and paste that link in as the source of code (you'll need to select "Upload a file from Amazon S3"). This is shown below:</p>
+
+	<img src="/img/lambda_s3.png" width="100%">
