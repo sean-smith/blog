@@ -7,7 +7,7 @@
 # 	make deploy
 
 clean:
-	-rm -rf _site
+	-rm -rf _site .jekyll-cache
 
 build:
 	jekyll build --config config.yml
